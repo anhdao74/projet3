@@ -1,0 +1,103 @@
+
+<?php $title = 'Blog Billet simple pour l\'Alaska'; ?>
+
+
+<?php ob_start(); ?>
+
+    <h1>Billet simple pour l'Alaska</h1>
+
+
+    <p><a href ="index2.php"> Retour à la liste des chapitres </a></p>
+
+    <?php
+
+    while ($data=$chapters-> fetch())
+    {
+    ?>
+
+    <table class="chapters"/>
+    <tr>
+        <td>
+        <?= htmlspecialchars($data['title']) ?>
+        </td>
+        <td>
+        le <?= $data['creation_date_fr'] ?>
+        </td>
+    
+
+        <td>
+        <form action="index2.php?action=editChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
+        <input type="submit" value="Modifier"/>
+        </form></td>
+
+        <td><form action="index2.php?action=removeChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
+        <input type="submit" name="Supprimer" value="Supprimer" id="button"/>
+        </form></td>
+    </tr>
+    </table>
+
+    <?php
+    }
+    $chapters->closeCursor();
+    ?>
+
+    <h2 class="ajout"> Ajouter un nouveau chapitre </h2>
+
+
+
+
+    <form action='index2.php?action=addChapter' method='post'>
+        
+    <div>
+        <label for="title">Titre chapitre</label><br />
+        <textarea id="title" name="title"></textarea>
+    </div>
+    <div>
+        <label for="content">Texte</label><br />
+        <textarea id="#mytextarea" name="content"></textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+    </form>
+
+    <h3 class="commentlist"> Les derniers commentaire</h3>
+    
+
+    <?php    
+
+    while ($dat=$listcomments-> fetch())
+
+    {
+    ?>
+
+    <div class="news"/>
+    <h4>
+    <?= htmlspecialchars($dat['author']) ?>
+    le <?= $dat['creation_date_fr'] ?>
+    </h4>
+
+    <p>
+       
+    <?php
+
+    $res=$dat['content'];
+    
+    echo $res;
+
+    ?>
+       
+    </p>
+    </div>
+
+<?php
+}
+$chapters->closeCursor();?>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('view/template.php'); ?>
+
+<foot>
+    <a href="index2.php?action=deconnexion"> Deconnexion </a>
+</foot>
