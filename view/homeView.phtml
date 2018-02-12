@@ -60,16 +60,16 @@ $chapters->closeCursor();
    
 <foot>
     <?php
-    $connected= new UserController();
+    $connected= new UserSession();
     $logged=$connected->isLogged();
     if ($logged==TRUE)
     { ?>
-        <a class="admin" href="index2.php?action=deconnexion"> Deconnexion </a>
+        <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
         
     <?php }
     else
     { ?>
-        <a class="admin" href="index2.php?action=connexion"> Connexion admin </a>
+        <a class="admin" href="index.php?action=connexion"> Connexion admin </a>
     <?php }
     ?>
 </foot>
