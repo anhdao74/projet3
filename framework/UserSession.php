@@ -1,6 +1,6 @@
 <?php
 
-class UserController 
+class UserSession
 {
 	public function __construct()
 	{
@@ -19,17 +19,22 @@ class UserController
  
 	}
 
+	public function logOut()
+	{
+		$_SESSION['user'] = FALSE;
+ 
+	}
+
 	public function isLogged()
 	{
 		if (isset($_SESSION['user']) && $_SESSION['user'] ==TRUE)
         {
        		return TRUE;
-        } 
-        else
+        }  
+        if (isset($_SESSION['user']) && $_SESSION['user'] ==FALSE)
         {
-         	return FALSE;
-        }
-         
+       		return FALSE;
+        }     
 	}
 	
 }
