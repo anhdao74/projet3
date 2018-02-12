@@ -11,16 +11,17 @@ function connexion()
 
 function deconnexion()
     {
-        session_unset();
+        $user = new UserSession();
+        $sign = $user->logOut();
     	session_destroy();
-        header('location: index2.php');
+        header('location: index.php');
         exit;
 
     }
 
 function verifyController()
     {
-        $userManager = new VerifyManager();
+        $userManager = new ConnexionManager();
         $user = $userManager->verifModel($_POST['login'], $_POST['pass']);
         
         
@@ -32,7 +33,7 @@ function verifyController()
         
         else 
         {  
-        $user = new UserController();
+        $user = new UserSession();
         $sign = $user->signIn();
         echo 'Vous êtes connecté';
 
