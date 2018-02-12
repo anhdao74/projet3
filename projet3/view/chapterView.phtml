@@ -1,0 +1,72 @@
+
+<?php $title='Blog Billet simple pour l\'Alaska'; ?>
+
+<?php ob_start(); ?> 
+
+<h1>Billet simple pour l'Alaska</h1>
+
+
+
+
+	<p><a href ="index2.php"> Retour à la liste des chapitres </a></p>
+
+	<div class="news">
+
+	<h3>
+	<?= htmlspecialchars($chapter['title']) ?>
+	<em>le <?=htmlspecialchars($chapter['creation_date_fr']) ?></em>
+	</h3>
+
+	<p><?= nl2br(htmlspecialchars($chapter['content'])) ?></p>
+
+	<?php
+
+while ($data=$comments-> fetch())
+   
+{
+?>
+    <div class="news"/>
+    <h4>
+    <?= htmlspecialchars($data['author']) ?>
+    le <?= $data['creation_date_fr'] ?>
+    </h4>
+
+    <p>
+       
+        <?php
+
+        $res=$data['content'];?>
+
+        <p><input type="submit" value="signaler" /></p>
+        <?php
+        
+        echo $res;
+
+        ?>
+        <?php
+		}
+		$comments->closeCursor();
+		?>
+
+<h5> Ajouter un nouveau commentaire </h5>
+
+    <form action="index2.php?action=addComment&amp;id=<?= $data['id'] ?>" method='post'>
+
+    	<input type="hidden" name="id" value="<?=$chapter['id']?>"/>    
+        
+    <div>
+        <label for="author">Votre pseudo</label><br />
+        <textarea id="author" name="author"></textarea>
+    </div>
+    <div>
+        <label for="content">Texte</label><br />
+        <textarea id="content" name="content"></textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+    </form>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('view/template.php'); ?>
