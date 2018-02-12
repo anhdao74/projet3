@@ -64,7 +64,7 @@ function addComment()
     }
 
 
-function removeComment($id)
+    function removeComment($id)
     {
         $db = Db::getConnexionPDO();
         $commentManager = new CommentManager($db); 
@@ -72,5 +72,23 @@ function removeComment($id)
         $removeLine=$commentManager->cancelComment($id);
         require ('view/adminView.phtml');
         echo 'La suppression a bien été exécutée';
+    }
+
+    function signaledComment()
+    {
+        $commentManager = new CommentManager();
+        $comment = $commentManager-> getComment($chapterId);
+        $signalComment = $comment->getSignaledComment($signaled);
+        if($signalComment == "1")
+        {
+            header('Location: index2.php?action=chapter&id=' . $_POST['id']);
+            echo 'Votre signalement a bien été envoyé';
+        }
+        else
+        {
+            require ('view/chapterView.phtml');
+        }
+
+          
     }
 }

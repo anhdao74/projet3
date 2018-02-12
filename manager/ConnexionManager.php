@@ -2,7 +2,7 @@
 
 
 
-class VerifyManager extends Manager
+class ConnexionManager extends Manager
 {
 	function verifModel($login, $pass)
 	{

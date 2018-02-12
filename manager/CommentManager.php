@@ -19,6 +19,13 @@ class CommentManager extends Manager
 	    return $list;
 	}
 
+	public function getSignaledComment($signaled)
+	{
+	    $comment = $this ->pdo-> execute('UPDATE comments SET signaled = "1" WHERE id = ?');
+	    $signaled=$comment-> execute(array($signaled));
+	    return $signaled;
+	}
+
 	public function getComment($chapterId)
 	{
 	    $req= $this->pdo-> prepare('SELECT id, author, content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE id=?');

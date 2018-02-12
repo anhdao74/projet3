@@ -110,6 +110,15 @@ class Routeur
                 return [$commentController, 'removeComment'];
             }
 
+            elseif ($_GET['action'] == 'signaledComment') 
+            {
+                $commentManager = new CommentManager($db);
+                $comment=$commentManager->getComment($_GET['id']);
+
+                $commentController = new CommentController;
+                return [$commentController, 'signaledComment'];
+            }
+
         }
         else 
         {
