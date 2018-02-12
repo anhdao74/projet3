@@ -7,7 +7,7 @@
     <h1>Billet simple pour l'Alaska</h1>
 
 
-    <p><a href ="index2.php"> Retour à la liste des chapitres </a></p>
+    <p><a href ="index.php"> Retour à la liste des chapitres </a></p>
 
     <?php
 
@@ -26,11 +26,11 @@
     
 
         <td>
-        <form action="index2.php?action=editChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
+        <form action="index.php?action=editChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
         <input type="submit" value="Modifier"/>
         </form></td>
 
-        <td><form action="index2.php?action=removeChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
+        <td><form action="index.php?action=removeChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
         <input type="submit" name="Supprimer" value="Supprimer" id="button"/>
         </form></td>
     </tr>
@@ -46,7 +46,7 @@
 
 
 
-    <form action='index2.php?action=addChapter' method='post'>
+    <form action='index.php?action=addChapter' method='post'>
         
     <div>
         <label for="title">Titre chapitre</label><br />
@@ -99,5 +99,5 @@ $chapters->closeCursor();?>
 <?php require('view/template.php'); ?>
 
 <foot>
-    <a href="index2.php?action=deconnexion"> Deconnexion </a>
+    <a href="index.php?action=deconnexion"> Deconnexion </a>
 </foot>
