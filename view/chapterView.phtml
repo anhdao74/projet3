@@ -34,6 +34,7 @@ while ($data=$comments-> fetch())
     <p><?= $data['content']?></p>
 
         <form action="index.php?action=signaledComment&amp;id=<?= $data['id'] ?>" method='post'>
+            <input type="hidden" name="id" value="<?=$chapter['id']?>"/> 
         <input type="submit" value="signaler" /></form>
         <?php
         
