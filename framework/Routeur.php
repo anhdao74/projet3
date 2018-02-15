@@ -103,8 +103,8 @@ class Routeur
 
             elseif ($_GET['action'] == 'removeComment') 
             {
-                $commentManager = new CommentManager($db);
-                $comment=$commentManager->getComment($_GET['id']);
+                $commentManager = new CommentManager;
+                $list=$commentManager->getCommentsAdmin($_GET['id']);
 
                 $commentController = new CommentController;
                 return [$commentController, 'removeComment'];
@@ -112,10 +112,8 @@ class Routeur
 
             elseif ($_GET['action'] == 'signaledComment') 
             {
-                $commentManager = new CommentManager($db);
-                $comment=$commentManager->getComment($_GET['id']);
-
                 $commentController = new CommentController;
+                
                 return [$commentController, 'signaledComment'];
             }
 

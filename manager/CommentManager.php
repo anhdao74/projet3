@@ -19,10 +19,10 @@ class CommentManager extends Manager
 	    return $list;
 	}
 
-	public function getSignaledComment($signaled)
+	public function getSignaledComment($chapterId)
 	{
-	    $comment = $this ->pdo-> execute('UPDATE comments SET signaled = "1" WHERE id = ?');
-	    $signaled=$comment-> execute(array($signaled));
+	    $comment = $this ->pdo-> prepare('UPDATE comments SET signaled=1 WHERE id = ?');
+	    $signaled=$comment-> execute(array($chapterId));
 	    return $signaled;
 	}
 
@@ -42,10 +42,10 @@ class CommentManager extends Manager
 	    return $affectedLines;
 	}
 
-	public function cancelComment($chapterId)
+	public function cancelComment($id)
 	{
 	    $comment= $this ->pdo->prepare('DELETE FROM comments WHERE id=?');
-	    $removeLine=$comment-> execute(array($chapterId ));
+	    $removeLine=$comment-> execute(array($id));
 	    return $removeLine;
 	}
 

@@ -64,13 +64,12 @@ function addComment()
     }
 
 
-    function removeComment($id)
+    function removeComment()
     {
-        $db = Db::getConnexionPDO();
-        $commentManager = new CommentManager($db); 
-        $comment= $commentManager->getComments($chapterId);
-        $removeLine=$commentManager->cancelComment($id);
-        require ('view/adminView.phtml');
+        $commentManager = new CommentManager(); 
+        $list= $commentManager->getCommentsAdmin();
+        $removeLine=$commentManager->cancelComment($_GET['id']);
+        header('Location: index.php?action=showAdmin');
         echo 'La suppression a bien été exécutée';
     }
 
@@ -78,16 +77,11 @@ function addComment()
     {
         $commentManager = new CommentManager();
         $comment = $commentManager-> getComment($chapterId);
-        $signalComment = $comment->getSignaledComment($signaled);
-        if($signalComment == "1")
-        {
-            header('Location: index2.php?action=chapter&id=' . $_POST['id']);
+        $signaled = $commentManager->getSignaledComment($_GET['id']);
+        var_dump($signalComment);
+          header('Location: index.php?action=chapter&id=' . $_POST['id']);
             echo 'Votre signalement a bien été envoyé';
-        }
-        else
-        {
-            require ('view/chapterView.phtml');
-        }
+       
 
           
     }
