@@ -60,14 +60,14 @@ function addComment()
         {
             throw new Exception('Aucun identifiant de billet envoyé');
         }
-    header('Location: index2.php?action=chapter&id=' . $_POST['id']);
+    header('Location: index.php?action=chapter&id=' . $_POST['id']);
     }
 
 
     function removeComment()
     {
         $commentManager = new CommentManager(); 
-        $list= $commentManager->getCommentsAdmin();
+        $list = $commentManager-> getCommentsAdmin();
         $removeLine=$commentManager->cancelComment($_GET['id']);
         header('Location: index.php?action=showAdmin');
         echo 'La suppression a bien été exécutée';
@@ -78,11 +78,7 @@ function addComment()
         $commentManager = new CommentManager();
         $comment = $commentManager-> getComment($chapterId);
         $signaled = $commentManager->getSignaledComment($_GET['id']);
-        var_dump($signalComment);
-          header('Location: index.php?action=chapter&id=' . $_POST['id']);
-            echo 'Votre signalement a bien été envoyé';
-       
-
-          
+        header('Location: index.php?action=chapter&id=' . $_POST['id']);
+        echo 'Votre signalement a bien été envoyé';    
     }
 }
