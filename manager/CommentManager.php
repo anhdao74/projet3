@@ -7,16 +7,16 @@ class CommentManager extends Manager
 	public function getComments($chapterId)
 	{
 	    $query= $this ->pdo-> prepare('SELECT id, author,content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE chapterId=? ORDER BY id DESC');
-	    $comments=$query->execute(array($chapterId));
+	    $query->execute(array($chapterId));
 
-	    return $comments;
+	    return $query;
 	}
 
 	public function getCommentsAdmin($chapterId)
 	{
-	    $query = $this ->pdo-> prepare('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
-	    $list =$query->execute(array($chapterId));
-	    return $list;
+	    $query = $this ->pdo-> query('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
+	    
+	    return $query;
 	}
 
 	public function getSignaledComment($chapterId)

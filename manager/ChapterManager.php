@@ -7,7 +7,7 @@ class ChapterManager extends Manager
 	public function getChapters()
 	{
 	    $req = $this ->pdo-> query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters ORDER BY id');
-
+	    
 	    return $req;
 	}
 
