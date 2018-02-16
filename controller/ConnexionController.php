@@ -15,7 +15,7 @@ function deconnexion()
         $sign = $user->logOut();
     	session_destroy();
         header('location: index.php');
-        exit;
+        exit();
 
     }
 

@@ -18,7 +18,7 @@ function addChapter()
                 
                 $affectedLines= $chapterManager->postChapter($_POST['title'], $_POST['content']);
             	header('Location: index.php?action=showAdmin');
-               	echo 'Votre nouveau chapitre a bien été ajouté';
+               	exit();
             }    
     }
     
@@ -45,7 +45,7 @@ function editChapter()
                 $chapter= $chapterManager-> getChapter($chapterId);
                 $editChapter=$chapterManager->modifyChapter($chapterId, $newtitle, $newcontent);
                 header('Location: index.php?action=showAdmin');
-                echo 'Vos modifications ont été mises à jour'; 
+                exit();
             }  
             else
             {
@@ -64,6 +64,6 @@ function removeChapter()
         $chapters=$chapterManager->getChapters();
         $removeLine=$chapterManager->cancelChapter($_GET['id']);
         header('Location: index.php?action=showAdmin');
-        echo 'La suppression a bien été exécutée';
+        exit();
     }
 }

@@ -26,8 +26,7 @@ function listCommentsAdmin()
 
 function comment()
     {
-        $db = Db::getConnexionPDO();
-        $commentManager = new CommentManager($db); 
+        $commentManager = new CommentManager(); 
         if (isset($_GET['id']) > 0)
         {
             $comment = $commentManager->getComment($_GET['id']);
@@ -61,6 +60,7 @@ function addComment()
             throw new Exception('Aucun identifiant de billet envoyé');
         }
     header('Location: index.php?action=chapter&id=' . $_POST['id']);
+    exit();
     }
 
 
@@ -70,7 +70,7 @@ function addComment()
         
         $removeLine=$commentManager->cancelComment($_GET['id']);
         header('Location: index.php?action=showAdmin');
-        echo 'La suppression a bien été exécutée';
+        exit();
     }
 
     function signaledComment()
@@ -79,6 +79,6 @@ function addComment()
         $comment = $commentManager-> getComment($chapterId);
         $signaled = $commentManager->getSignaledComment($_GET['id']);
         header('Location: index.php?action=chapter&id=' . $_POST['id']);
-        echo 'Votre signalement a bien été envoyé';    
+        exit();  
     }
 }
