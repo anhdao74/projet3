@@ -87,8 +87,8 @@
     if ($dat['signaled'] == 1)
         {
             echo 'Ce commentaire a été signalé';?>
-        <form action="index.php?action=removeComment&amp;id=<?= $data['id'] ?>" method="POST"/>
-        <input type="submit" name="SupprimerCommentaire" value="Supprimer" />
+        <form action="index.php?action=removeComment&amp;id=<?= $dat['id'] ?>" method="POST"/>
+        <input type="submit" name="SupprimerCommentaires" value="Supprimer" />
         </form>
         <?}
 
