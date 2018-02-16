@@ -1,7 +1,7 @@
 
 <?php $title='Blog Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); ?> 
+
 
 <h1>Billet simple pour l'Alaska</h1>
 
@@ -65,6 +65,3 @@ while ($data=$comments-> fetch())
     </div>
     </form>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/template.php'); ?>

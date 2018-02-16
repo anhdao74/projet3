@@ -2,8 +2,6 @@
 <?php $title = 'Blog Billet simple pour l\'Alaska'; ?>
 
 
-<?php ob_start(); ?>
-
     <h1>Billet simple pour l'Alaska</h1>
 
 
@@ -101,10 +99,6 @@
 <?php
 }
 $chapters->closeCursor();?>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/template.php'); ?>
 
 <foot>
     <a href="index.php?action=deconnexion"> Deconnexion </a>
