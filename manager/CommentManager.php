@@ -6,23 +6,23 @@ class CommentManager extends Manager
 {
 	public function getComments($chapterId)
 	{
-	    $comments= $this ->pdo-> prepare('SELECT id, author,content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE chapterId=? ORDER BY id DESC');
-	    $comments->execute(array($chapterId));
+	    $query= $this ->pdo-> prepare('SELECT id, author,content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE chapterId=? ORDER BY id DESC');
+	    $comments=$query->execute(array($chapterId));
 
 	    return $comments;
 	}
 
-	public function getCommentsAdmin()
+	public function getCommentsAdmin($chapterId)
 	{
-	    $list = $this ->pdo-> query('SELECT id, author, content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY id DESC');
-
+	    $query = $this ->pdo-> prepare('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
+	    $list =$query->execute(array($chapterId));
 	    return $list;
 	}
 
 	public function getSignaledComment($chapterId)
 	{
-	    $comment = $this ->pdo-> prepare('UPDATE comments SET signaled=1 WHERE id = ?');
-	    $signaled=$comment-> execute(array($chapterId));
+	    $query = $this ->pdo-> prepare('UPDATE comments SET signaled=1 WHERE id = ?');
+	    $signaled=$query-> execute(array($chapterId));
 	    return $signaled;
 	}
 
@@ -37,15 +37,15 @@ class CommentManager extends Manager
 
 	public function postComment($chapterId, $author, $content)
 	{
-	    $comment= $this ->pdo->prepare('INSERT INTO comments(chapterId, author, content, add_date) VALUES (?,?,?,NOW())');
-	    $affectedLines=$comment -> execute(array($chapterId, $author, $content));
+	    $query= $this ->pdo->prepare('INSERT INTO comments(chapterId, author, content, add_date) VALUES (?,?,?,NOW())');
+	    $affectedLines=$query -> execute(array($chapterId, $author, $content));
 	    return $affectedLines;
 	}
 
-	public function cancelComment($id)
+	public function cancelComment($chapterId)
 	{
-	    $comment= $this ->pdo->prepare('DELETE FROM comments WHERE id=?');
-	    $removeLine=$comment-> execute(array($id));
+	    $query= $this ->pdo->prepare('DELETE FROM comments WHERE id=?');
+	    $removeLine=$query-> execute(array($chapterId));
 	    return $removeLine;
 	}
 

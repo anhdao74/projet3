@@ -22,22 +22,22 @@ class ChapterManager extends Manager
 
 	public function postChapter($title, $content)
 	{
-	    $chapter= $this ->pdo->prepare('INSERT INTO chapters(title, content, creation_date) VALUES (?,?,NOW())');
-	    $affectedLines=$chapter -> execute(array($title, $content));
+	    $query= $this ->pdo->prepare('INSERT INTO chapters(title, content, creation_date) VALUES (?,?,NOW())');
+	    $affectedLines=$query -> execute(array($title, $content));
 	    return $affectedLines;
 	}
 
 	public function modifyChapter($chapterId, $newtitle, $newcontent)
 	{
-	    $chapter= $this ->pdo->prepare('UPDATE chapters SET title = :newtitle, content= :newcontent WHERE id= :id');
-	    $editedLines=$chapter->execute(array('id'=>$chapterId, 'newtitle'=>$newtitle,'newcontent'=>$newcontent));
+	    $query= $this ->pdo->prepare('UPDATE chapters SET title = :newtitle, content= :newcontent WHERE id= :id');
+	    $editedLines=$query->execute(array('id'=>$chapterId, 'newtitle'=>$newtitle,'newcontent'=>$newcontent));
 	    return $editedLines;
 	}
 
 	public function cancelChapter($chapterId)
 	{
-	    $chapter= $this ->pdo->prepare('DELETE FROM chapters WHERE id=?');
-	    $removeLine=$chapter-> execute(array($chapterId ));
+	    $query= $this ->pdo->prepare('DELETE FROM chapters WHERE id=?');
+	    $removeLine=$query-> execute(array($chapterId ));
 	    return $removeLine;
 	}
 
