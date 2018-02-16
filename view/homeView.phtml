@@ -26,27 +26,28 @@ Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
 
 <?php
 
-while ($data=$chapters-> fetch())
-   
+$req=$chapters-> fetchAll();
+
+foreach ($req as $data)    
 {
 ?>
     <div class="news"/>
     <h5>
-    <?= htmlspecialchars($data['title']) ?>
-    le <?= $data['creation_date_fr'] ?>
+    <?php echo $data['title']; ?>
+    le <?php echo $data['creation_date_fr']; ?>
     </h4>
 
     <p>
        
-        <?php
+    <?php
 
-        $res=$data['content'];
-        $res=substr($res, 0, 30);
-        echo $res;
+    $res=$data['content'];
+    $res=substr($res, 0, 30);
+    echo $res;
 
-        ?>
-        <br />
-        <em><a href="index2.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
+    ?>
+    <br />
+    <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
     </p>
     </div>
 <?php
@@ -54,9 +55,7 @@ while ($data=$chapters-> fetch())
 $chapters->closeCursor();
 ?>
 
-<?php $content = ob_get_clean(); ?>
 
-<?php require('view/template.php'); ?>
    
 <foot>
     <?php
@@ -67,9 +66,14 @@ $chapters->closeCursor();
         <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
         
     <?php }
-    else
+    $connected= new UserSession();
+    $logged=$connected->isLogged();
+    if ($logged==FALSE)
     { ?>
         <a class="admin" href="index.php?action=connexion"> Connexion admin </a>
     <?php }
     ?>
 </foot>
+<?php $content = ob_get_clean(); ?>
+
+<?php require('view/template.php'); ?>

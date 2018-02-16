@@ -18,7 +18,7 @@
     <table class="chapters"/>
     <tr>
         <td>
-        <?= htmlspecialchars($data['title']) ?>
+        <?php echo $data['title'] ?>
         </td>
         <td>
         le <?= $data['creation_date_fr'] ?>
@@ -72,7 +72,7 @@
 
     <div class="news"/>
     <h4>
-    <?= htmlspecialchars($dat['author']) ?>
+    <?php echo $dat['author'] ?>
     le <?= $dat['creation_date_fr'] ?>
     </h4>
 

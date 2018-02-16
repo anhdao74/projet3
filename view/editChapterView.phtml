@@ -13,7 +13,7 @@
 
     <h3>
     
-    <em>le <?=htmlspecialchars($chapter['creation_date_fr']) ?></em>
+    <em>le <?php echo $chapter['creation_date_fr'] ?></em>
     </h3>
 
     
@@ -24,16 +24,16 @@
 
     <form action='index.php?action=editChapter' method='post'>
     
-    <input type="hidden" name="id" value="<?=htmlspecialchars($chapter['id'])?>"/>  
+    <input type="hidden" name="id" value="<?php echo $chapter['id']?>"/>  
     <?php var_dump($chapter);?>
     <div>
         <label for="newtitle">Titre chapitre</label><br />
-        <textarea id="newtitle" name="newtitle"><?= htmlspecialchars($chapter['title']) ?></textarea>
+        <textarea id="newtitle" name="newtitle"><?php echo $chapter['title'] ?></textarea>
 
     </div>
     <div>
         <label for="newcontent">Texte</label><br />
-        <textarea id="newcontent" name="newcontent" ><?= nl2br(htmlspecialchars($chapter['content'])) ?></textarea>
+        <textarea id="newcontent" name="newcontent" ><?php echo $chapter['content'] ?></textarea>
     </div>
     <div>
         <input type="submit" />

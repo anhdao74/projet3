@@ -13,11 +13,11 @@
 	<div class="news">
 
 	<h3>
-	<?= htmlspecialchars($chapter['title']) ?>
-	<em>le <?=htmlspecialchars($chapter['creation_date_fr']) ?></em>
+	<?php echo $chapter['title'] ?>
+	<em>le <?php echo $chapter['creation_date_fr'] ?></em>
 	</h3>
 
-	<p><?= nl2br(htmlspecialchars($chapter['content'])) ?></p>
+	<p><?php echo $chapter['content'] ?></p>
 
 	<?php
 
@@ -27,11 +27,11 @@ while ($data=$comments-> fetch())
 ?>
     <div class="news"/>
     <h4>
-    <?= htmlspecialchars($data['author']) ?>
+    <?php echo $data['author'] ?>
     le <?= $data['creation_date_fr'] ?>
     </h4>
 
-    <p><?= $data['content']?></p>
+    <p><?php echo $data['content']?></p>
 
         <form action="index.php?action=signaledComment&amp;id=<?= $data['id'] ?>" method='post'>
             <input type="hidden" name="id" value="<?=$chapter['id']?>"/> 
