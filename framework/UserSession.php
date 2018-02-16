@@ -31,7 +31,7 @@ class UserSession
         {
        		return TRUE;
         }  
-        if (isset($_SESSION['user']) && $_SESSION['user'] ==FALSE)
+        if (!isset($_SESSION['user']) && $_SESSION['user'] ==FALSE)
         {
        		return FALSE;
         }     
