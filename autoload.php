@@ -22,6 +22,14 @@ class Autoload
 			$manager = new $classname;
 			return $manager;
 		}
+
+		if (file_exists($file = 'framework' . '/' . $classname . '.php'))
+		{
+			require $file;
+			$manager = new $classname;
+			return $manager;
+		}
+
 		if (file_exists($file = 'view' . '/' . $classname . '.phtml')) 
 		{
 			require $file;
@@ -37,4 +45,3 @@ class Autoload
 }
 
 
-spl_autoload_register();
