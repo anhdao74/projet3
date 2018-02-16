@@ -6,8 +6,7 @@ class HomeController
 
 public function showHome()
     {
-        $db = Db::getConnexionPDO();
-        $chapterManager = new ChapterManager($db); 
+        $chapterManager = new ChapterManager(); 
 	    $chapters = $chapterManager->getChapters(); 
 
 	    require('view/homeView.phtml');
