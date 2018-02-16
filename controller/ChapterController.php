@@ -29,9 +29,12 @@ function editChapter()
         if ($logged===False)
         {
 
-            require ('view/connexionView.phtml');
-
+        $template = 'connexion';
+        $title = 'Page de connexion';
+        
+        require('view/layoutView.phtml'); 
         }
+
         else
         {
          if (isset($_POST['newtitle']) && isset($_POST['newcontent']))
@@ -52,7 +55,10 @@ function editChapter()
                 $chapterManager = new ChapterManager();
                 $chapter = $chapterManager->getChapter($_GET['id']);
                 
-                require ('view/editChapterView.phtml');    
+                $template = 'editChapter';
+                $title = 'Page modification chapitre';
+        
+                require('view/layoutView.phtml');    
             }
         } 
 

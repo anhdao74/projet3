@@ -9,7 +9,12 @@ public function showHome()
         $chapterManager = new ChapterManager(); 
 	    $chapters = $chapterManager->getChapters(); 
 
-	    require('view/homeView.phtml');
+        $template = 'home';
+        $title = 'Page Accueil';
+        
+        require('view/layoutView.phtml');
+
+	    
     }
 
 public function chapter()
@@ -22,8 +27,9 @@ public function chapter()
             $chapter = $chapterManager->getChapter($_GET['id']);
             $comments = $commentManager->getComments($_GET['id']);
         }
+        $template = 'chapter';
+        $title = 'Page chapitre';
         
-
-        require ('view/chapterView.phtml');
+        require('view/layoutView.phtml');
     }
 }

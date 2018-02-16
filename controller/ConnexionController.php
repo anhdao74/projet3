@@ -45,7 +45,10 @@ function verifyController()
         $commentsManager = new CommentManager();
         $listcomments = $commentsManager->getCommentsAdmin();
         
-        require('view/adminView.phtml');     
+        $template = 'admin';
+        $title = 'Page administration';
+        
+        require('view/layoutView.phtml');    
         }  	
     }
 }

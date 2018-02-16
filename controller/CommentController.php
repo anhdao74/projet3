@@ -19,7 +19,10 @@ function listCommentsAdmin()
         $commentManager = new CommentManager(); 
         $listcomments = $commentManager->getCommentsAdmin(); 
 
-        require ('view/adminView.phtml');
+        $template = 'admin';
+        $title = 'Page administration';
+        
+        require('view/layoutView.phtml');
 
         
     }
@@ -36,7 +39,10 @@ function comment()
             throw new Exception('Aucun identifiant de commentaire envoyé');
         }
 
-        require ('view/chapterView.phtml');
+        $template = 'admin';
+        $title = 'Page administration';
+        
+        require('view/layoutView.phtml');
     }
 
 function addComment()
