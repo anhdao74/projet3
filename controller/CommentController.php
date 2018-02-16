@@ -67,7 +67,7 @@ function addComment()
     function removeComment()
     {
         $commentManager = new CommentManager(); 
-        $list = $commentManager-> getCommentsAdmin();
+        
         $removeLine=$commentManager->cancelComment($_GET['id']);
         header('Location: index.php?action=showAdmin');
         echo 'La suppression a bien été exécutée';
