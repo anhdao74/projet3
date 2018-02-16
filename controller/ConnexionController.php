@@ -6,7 +6,9 @@ class ConnexionController
 {
 function connexion()
     {
-    	require('view/connexionView.phtml');
+    	$user = new UserSession();
+        $sign = $user->signIn();
+        require('view/connexionView.phtml');
     }
 
 function deconnexion()
