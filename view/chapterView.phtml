@@ -1,6 +1,11 @@
 
 <?php $title='Blog Billet simple pour l\'Alaska'; ?>
 
+ <?php
+        
+        $req= new FlashMessageSession();
+        $flash = $req->asMessage();
+        ?>
 
 
 <h1>Billet simple pour l'Alaska</h1>
@@ -33,14 +38,11 @@ while ($data=$comments-> fetch())
 
     <p><?php echo $data['content']?></p>
 
+
         <form action="index.php?action=signaledComment&amp;id=<?= $data['id'] ?>" method='post'>
             <input type="hidden" name="id" value="<?=$chapter['id']?>"/> 
         <input type="submit" value="signaler" /></form>
-        <?php
-        
-        echo $res;
-
-        ?>
+       
         <?php
 		}
 		$comments->closeCursor();
