@@ -37,7 +37,9 @@ function verifyController()
         {  
         $user = new UserSession();
         $sign = $user->signIn();
-        echo 'Vous êtes connecté';
+        
+        $req = new FlashMessageSession();
+        $flash = $req->setFlash('Vous êtes connecté');
 
         $chapterManager = new ChapterManager();
         $chapters = $chapterManager->getChapters();

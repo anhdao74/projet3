@@ -17,6 +17,9 @@ function addChapter()
             {
                 
                 $affectedLines= $chapterManager->postChapter($_POST['title'], $_POST['content']);
+
+                $req = new FlashMessageSession();
+                $flash = $req->setFlash('Le chapitre a bien été ajouté');
             	header('Location: index.php?action=showAdmin');
                	exit();
             }    
@@ -47,6 +50,8 @@ function editChapter()
                 $chapterManager = new ChapterManager();
                 $chapter= $chapterManager-> getChapter($chapterId);
                 $editChapter=$chapterManager->modifyChapter($chapterId, $newtitle, $newcontent);
+                $req = new FlashMessageSession();
+                $flash = $req->setFlash('Le chapitre a bien été modifié');
                 header('Location: index.php?action=showAdmin');
                 exit();
             }  
@@ -69,6 +74,9 @@ function removeChapter()
         $chapterManager = new ChapterManager();
         $chapters=$chapterManager->getChapters();
         $removeLine=$chapterManager->cancelChapter($_GET['id']);
+
+        $req = new FlashMessageSession();
+        $flash = $req->setFlash('Le chapitre a bien été supprimé');
         header('Location: index.php?action=showAdmin');
         exit();
     }

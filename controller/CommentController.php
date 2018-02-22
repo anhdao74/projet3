@@ -54,7 +54,8 @@ function addComment()
                 if (!empty($_POST['author']) && !empty($_POST['content']))
                 {
                     $affectedLines = $commentManager->postComment($_POST['id'], $_POST['author'], $_POST['content']);
-                    
+                    $req = new FlashMessageSession();
+                    $flash = $req->setFlash('Votre commentaire a bien été ajouté');
                 }
                 else 
                 {
@@ -84,6 +85,8 @@ function addComment()
         $commentManager = new CommentManager();
         $comment = $commentManager-> getComment($chapterId);
         $signaled = $commentManager->getSignaledComment($_GET['id']);
+        $req = new FlashMessageSession();
+        $flash = $req->setFlash('Votre message a bien été signalé');
         header('Location: index.php?action=chapter&id=' . $_POST['id']);
         exit();  
     }
