@@ -12,7 +12,7 @@ class CommentManager extends Manager
 	    return $query;
 	}
 
-	public function getCommentsAdmin($chapterId)
+	public function getCommentsAdmin()
 	{
 	    $query = $this ->pdo-> query('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
 	    
