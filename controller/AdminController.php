@@ -10,6 +10,9 @@ class AdminController
 	    $chapters = $chapterManager->getChapters(); 
         $listcomments = $commentManager->getCommentsAdmin();
 
-	    require('view/adminView.phtml');
+	    $template = 'admin';
+        $title = 'Page administration';
+        
+        require('view/layoutView.phtml');
 	}
 }
