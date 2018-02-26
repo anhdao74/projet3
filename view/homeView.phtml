@@ -73,13 +73,14 @@
     if ($logged==TRUE)
     { ?>
         <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
+        <a class="admin2" href="index.php?action=showAdmin"> Page admin </a>
         
     <?php }
     $connected= new UserSession();
     $logged=$connected->isLogged();
     if ($logged==FALSE)
     { ?>
-        <a class="admin" href="index.php?action=connexion"> Connexion admin </a>
+        <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
     <?php }
     ?>
 </footer>
