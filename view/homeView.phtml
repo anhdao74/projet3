@@ -1,63 +1,72 @@
 <?php $title='Blog Billet simple pour l\'Alaska'; ?>
 
 
+<div class="container">
+      <header class="page-header">
+        <h1>Billet simple pour l'Alaska</h1>
+      </header>
+      <section class="row">
+        <div class="col-sm-12">
 
+<div class="row">
 
-<h1>Billet simple pour l'Alaska</h1>
+    <section class="col-sm-8">
+        <h2>Le blog de Jean Forteroche</h2>
 
+        <h4>Principe du Blog</h4>
+        <p> Jean Forteroche toujours à l'affût de nouvelles formes de communications et d'expression, a choisi de faire un cadeau a ses fans et de publier chaque semaine un chapitre de son nouveau roman "Billet simple pour l'Alaska": Il reste très à l'écoute de ses lecteurs et donne donc la possibilité de publier des commentaires sur chacun de ses chapitres.</p>
+    </section>
 
-<h2>Le blog de Jean Forteroche</h2>
+    <section class="col-sm-7 table-responsive">
+          <table class="table table-bordered table-striped table-condensed">
+            <caption>
+            <h5>Derniers billets du blog :</h5>
+            </caption>
+        
+        <?php
 
+        $req=$chapters-> fetchAll();
 
+        foreach ($req as $data)    
+        {
+        ?>
+        <div class="news"/>
+            <tr>
+            <td>
+            <?php echo $data['title']; ?>
+            le <?php echo $data['creation_date_fr']; ?>
+            </td>
 
-<a href="Forterocheportrait.jpeg"/><img class="portrait" src="Forterocheportrait_mini.jpeg" alt="portrait photo"/></a>
+            <td>   
+            <?php
 
-<h3>A propos de l'autheur</h3>
-<p> Jean Forteroche né le 18 juillet 1965, est né à Annecy, il y vit toujours et trouve son inspiration par sa région.Romancier, il est également scénariste et a coécrit, avec Nicolas Tackian, les dialogues du film de Pierre Isoard intitulé Alex Hugo, la mort et la belle vie : film inspiré d'un roman américain, relocalisé en Provence pour l'adaptation à la télévision.
-Grand passionné de thriller à l'instar de 8 millimètres de Joel Schumacher, on en retrouve quelques clins d'œil dans ses romans.
-Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
+            $res=$data['content'];
+            $res=substr($res, 0, 60);
+            echo $res;
+            ?>
+            <br />
+            <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
+            </td>
+        </tr>
+        </div>
+        <?php
+        }
+        $chapters->closeCursor();
+        ?>
+    </table>
+    </section>
 
-
-
-<h4>Principe du Blog</h4>
-<p> Jean Forteroche toujours à l'affût de nouvelles formes de communications et d'expression, a choisi de faire un cadeau a ses fans et de publier chaque semaine un chapitre de son nouveau roman "Billet simple pour l'Alaska": Il reste très à l'écoute de ses lecteurs et donne donc la possibilité de publier des commentaires sur chacun de ses chapitres.</p>
-
-<p>Derniers billets du blog :</p>
-
-<?php
-
-$req=$chapters-> fetchAll();
-
-foreach ($req as $data)    
-{
-?>
-    <div class="news"/>
-    <h5>
-    <?php echo $data['title']; ?>
-    le <?php echo $data['creation_date_fr']; ?>
-    </h4>
-
-    <p>
-       
-    <?php
-
-    $res=$data['content'];
-    $res=substr($res, 0, 30);
-    echo $res;
-
-    ?>
-    <br />
-    <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
-    </p>
-    </div>
-<?php
-}
-$chapters->closeCursor();
-?>
-
-
-   
-<foot>
+    <aside class="col-sm-offset-2 col-sm-2">
+        <img src="Forterocheportrait_mini.jpeg" alt="portrait photo">
+    
+        <h3>A propos de l'autheur</h3>
+        <p> Jean Forteroche né le 18 juillet 1965, est né à Annecy, il y vit toujours et trouve son inspiration par sa région.Romancier, il est également scénariste et a coécrit, avec Nicolas Tackian, les dialogues du film de Pierre Isoard intitulé Alex Hugo, la mort et la belle vie : film inspiré d'un roman américain, relocalisé en Provence pour l'adaptation à la télévision.
+        Grand passionné de thriller à l'instar de 8 millimètres de Joel Schumacher, on en retrouve quelques clins d'œil dans ses romans.
+        Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
+    </aside>
+</div>
+  
+<footer>
     <?php
     $connected= new UserSession();
     $logged=$connected->isLogged();
@@ -73,4 +82,4 @@ $chapters->closeCursor();
         <a class="admin" href="index.php?action=connexion"> Connexion admin </a>
     <?php }
     ?>
-</foot>
+</footer>
