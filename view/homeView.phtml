@@ -65,15 +65,21 @@
         Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
     </aside>
 </div>
-  
+</div>
+
+<section class="col-sm-12">  
 <footer>
     <?php
     $connected= new UserSession();
     $logged=$connected->isLogged();
     if ($logged==TRUE)
     { ?>
+        <div class="col-sm-3">
         <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
-        <a class="admin2" href="index.php?action=showAdmin"> Page admin </a>
+        </div>
+        <div class="col-sm-offset-7 col-sm-2">
+        <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
+        </div>
         
     <?php }
     $connected= new UserSession();
@@ -81,6 +87,8 @@
     if ($logged==FALSE)
     { ?>
         <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
+        
     <?php }
     ?>
 </footer>
+</section>
