@@ -34,7 +34,15 @@ function verifyController()
         if (!$user)  
         {
             $_SESSION['user'] = FALSE;
-            echo "Mot de passe ou identifiant erroné, vérifiez";
+
+            $req = new FlashMessageSession();
+            $flash = $req->setFlash('Mot de passe ou identifiant erroné, vérifiez');
+
+            $template = 'connexion';
+            $title = 'Page de connexion';
+        
+            require('view/layoutView.phtml');
+
         }
         
         else 
