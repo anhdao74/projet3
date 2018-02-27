@@ -22,6 +22,7 @@ class UserSession
 	public function logOut()
 	{
 		$_SESSION['user'] = FALSE;
+		session_destroy();
  
 	}
 
