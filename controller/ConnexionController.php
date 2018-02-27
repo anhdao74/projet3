@@ -6,8 +6,6 @@ class ConnexionController
 {
 function connexion()
     {
-    	$user = new UserSession();
-        $sign = $user->signIn();
         
         $template = 'connexion';
         $title = 'Page de connexion';
