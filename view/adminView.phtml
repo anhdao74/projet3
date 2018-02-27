@@ -30,11 +30,11 @@ $flash = $req->asMessage();
 
                 <td>
                 <form action="index.php?action=editChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
-                <input type="submit" value="Modifier"/>
+                <button class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span> Modifier</a>
                 </form></td>
 
                 <td><form action="index.php?action=removeChapter&amp;id=<?= $data['id'] ?>" method="POST"/>
-                <input type="submit" name="Supprimer" value="Supprimer" id="button"/>
+                <button class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
                 </form></td>
             </tr>
             </table>
@@ -62,7 +62,7 @@ $flash = $req->asMessage();
         <textarea id="#mytextarea" name="content"></textarea>
     </div>
     <div>
-        <input type="submit" />
+        <button class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-floppy-saved"></span> Enregistrer</a>
     </div>
     </form>
 
@@ -93,7 +93,7 @@ $flash = $req->asMessage();
         {
          ?><br><p class="flash"><? echo 'Ce commentaire a été signalé';?></p>
         <form action="index.php?action=removeComment&amp;id=<?= $dat['id'] ?>" method="POST"/>
-        <input type="submit" name="SupprimerCommentaires" value="Supprimer" />
+        <button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
         </form>
         <?}
 
