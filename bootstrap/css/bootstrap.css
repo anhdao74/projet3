@@ -102,24 +102,18 @@ body
   background-color:#E2F1FC !important;  
 }
 
-footer
+section footer
 {
   background:#040447 !important;
   color: white !important;
   width: 100% !important;
+  height:20px !important;
 }
 
 p.flash
 {
   font-style: italic !important;
   color:red !important;
-}
-
-a.admin2
-{
-  position: absolute !important;
-    right: 20px !important;
-    bottom: 0px !important;
 }
 
 mark {
