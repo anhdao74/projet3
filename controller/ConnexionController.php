@@ -8,7 +8,11 @@ function connexion()
     {
     	$user = new UserSession();
         $sign = $user->signIn();
-        require('view/connexionView.phtml');
+        
+        $template = 'connexion';
+        $title = 'Page de connexion';
+        
+        require('view/layoutView.phtml');
     }
 
 function deconnexion()
