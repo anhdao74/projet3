@@ -36,7 +36,7 @@ p
 }
 
 .row {
-  background-color:white !important;   
+  background-color:white;   
   border-radius: 10% !important;  
   font-size: 12px;
   line-height: 16px;
@@ -59,4 +59,11 @@ p.flash
 {
   font-style: italic !important;
   color:red !important;
+}
+
+#commentaire
+{
+  background-color:#EFF4F8 !important; 
+  border: grey;
+  border-radius: 10% !important;
 }
