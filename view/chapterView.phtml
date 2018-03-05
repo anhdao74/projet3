@@ -1,45 +1,59 @@
 
 <?php $title='Blog Billet simple pour l\'Alaska'; ?>
 
+    
+<?php
+
+$req= new FlashMessageSession();
+
+$flash = $req->asMessage();
+var_dump($flash);
+if ($flash==true)
+{?> 
     <div class="alert alert-success alert-dismissable col-lg-12">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <?php
-        
-        $req= new FlashMessageSession();
-        $flash = $req->asMessage();
-        ?>
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <? $set = $req->showFlash();?> 
+    </div> 
+<?}
+?>
+    
+<div class="container">
+    <header class="page-header">
+        <h1>Billet simple pour l'Alaska</h1>
+    </header>
+    <section class="row">
+<div class="col-sm-12">
+
+
+<p><a href ="index.php"> Retour à la liste des chapitres </a></p>
+
+	<div class="row">
+
+        <section class="col-sm-offset-2 col-sm-8">
+
+    	   <h3>
+    	       <?php echo $chapter['title'] ?>
+    	       <em>le <?php echo $chapter['creation_date_fr'] ?></em>
+    	   </h3>
+
+    	   <p><?php echo $chapter['content'] ?></p>
+        </section>
     </div>
-
-
-<h1>Billet simple pour l'Alaska</h1>
-
-
-
-
-	<p><a href ="index.php"> Retour à la liste des chapitres </a></p>
-
-	<div class="news">
-
-	<h3>
-	<?php echo $chapter['title'] ?>
-	<em>le <?php echo $chapter['creation_date_fr'] ?></em>
-	</h3>
-
-	<p><?php echo $chapter['content'] ?></p>
 
 	<?php
 
-while ($data=$comments-> fetch())
+        while ($data=$comments-> fetch())
    
-{
-?>
-    <div class="news"/>
-    <h4>
-    <?php echo $data['author'] ?>
-    le <?= $data['creation_date_fr'] ?>
-    </h4>
+        {
+        ?>
+        <div class="news"/>
+            <h4>
+            <?php echo $data['author'] ?>
+            le <?= $data['creation_date_fr'] ?>
+            </h4>
 
-    <p><?php echo $data['content']?></p>
+        <p><?php echo $data['content']?></p>
+        </div>
 
 
         <form action="index.php?action=signaledComment&amp;id=<?= $data['id'] ?>" method='post'>
@@ -52,46 +66,51 @@ while ($data=$comments-> fetch())
 		$comments->closeCursor();
 		?>
 
-<h5> Ajouter un nouveau commentaire </h5>
+            <h5> Ajouter un nouveau commentaire </h5>
 
-    <form action="index.php?action=addComment&amp;id=<?= $data['id'] ?>" method='post'>
+        <form action="index.php?action=addComment&amp;id=<?= $data['id'] ?>" method='post'>
 
-    	<input type="hidden" name="id" value="<?=$chapter['id']?>"/>    
+    	   <input type="hidden" name="id" value="<?=$chapter['id']?>"/>    
         
-    <div>
-        <label for="author">Votre pseudo</label><br />
-        <textarea id="author" name="author"></textarea>
+            <div>
+                <label for="author">Votre pseudo</label><br />
+                <input type="text" id="author" name="author">
+            </div>
+            <div>
+                <label for="content">Texte</label><br />
+                <textarea id="content" name="content"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-primary btn-success"><span class="glyphicon glyphicon-chevron-down"></span> Envoyer</button>
+            </div>
+        </form>
+
+        <section class="col-sm-12">  
+        <footer>
+            <?php
+            $connected= new UserSession();
+            $logged=$connected->isLogged();
+            if ($logged==TRUE)
+            { ?>
+                <div class="col-sm-3">
+                <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
+                </div>
+                <div class="col-sm-offset-7 col-sm-2">
+                <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
+                </div>
+                
+            <?php }
+            $connected= new UserSession();
+            $logged=$connected->isLogged();
+            if ($logged==FALSE)
+            { ?>
+                <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
+                
+            <?php }
+            ?>
+        </footer>
+        </section>
     </div>
-    <div>
-        <label for="content">Texte</label><br />
-        <textarea id="content" name="content"></textarea>
+        </section>
     </div>
-    <div>
-        <button class="btn btn-primary btn-success"><span class="glyphicon glyphicon-chevron-down"></span> Envoyer</a>
-    </div>
-    </form>
-<section class="col-sm-12">  
-<footer>
-    <?php
-    $connected= new UserSession();
-    $logged=$connected->isLogged();
-    if ($logged==TRUE)
-    { ?>
-        <div class="col-sm-3">
-        <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
-        </div>
-        <div class="col-sm-offset-7 col-sm-2">
-        <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
-        </div>
-        
-    <?php }
-    $connected= new UserSession();
-    $logged=$connected->isLogged();
-    if ($logged==FALSE)
-    { ?>
-        <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
-        
-    <?php }
-    ?>
-</footer>
-</section>
+
