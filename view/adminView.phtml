@@ -102,11 +102,10 @@
                 if ($dat['signaled'] == 1)
                     {
                      ?><br><p class="flash"><? echo 'Ce commentaire a été signalé';?></p>
+                    <?}?>
                     <form action="index.php?action=removeComment&amp;id=<?= $dat['id'] ?>" method="POST"/>
                     <button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
                     </form>
-                    <?}
-                ?>
                 </li>
             </ul> 
             
