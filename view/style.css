@@ -1,0 +1,62 @@
+.container2 h1
+{
+ width :90% !important;
+  height:190px !important;
+  margin:auto !important;
+  background-image: url("titre.jpeg") !important;
+  text-align: center !important;  
+  color:white !important;
+  font-size: 60px !important; 
+}
+h1 {
+  width :90% !important;
+  height:170px !important;
+  margin:auto !important;
+  background-image: url("titre.jpeg") !important;
+  text-align: center !important;  
+  color:white !important;
+  font-size: 80px !important;
+}
+h2
+{
+  text-align: center !important; 
+  font-size: 50px !important;
+  
+}
+
+h3,h4,h5
+{
+  color: #87CEFA !important;
+}
+
+p
+{
+  color: #110e3d !important;
+  text-align: justify;
+}
+
+.row {
+  background-color:white !important;   
+  border-radius: 10% !important;  
+  font-size: 12px;
+  line-height: 16px;
+}
+
+body
+{
+  background-color:#E2F1FC !important;  
+}
+
+section footer
+{
+  background:#040447 !important;
+  color: white !important;
+  width: 100% !important;
+  height:20px !important;
+}
+
+p.flash
+{
+  font-style: italic !important;
+  color:red !important;
+}
