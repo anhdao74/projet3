@@ -16,11 +16,12 @@ function connexion()
 function deconnexion()
     {
         $user = new UserSession();
-        $sign = $user->logOut();
-    	session_destroy();
+        $sign = $user->logOut(); 
+
+        $req = new FlashMessageSession();
+        $flash = $req->setFlash('Vous êtes déconnecté');
         header('location: index.php');
         exit();
-
     }
 
 function verifyController()
