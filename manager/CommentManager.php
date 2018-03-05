@@ -6,7 +6,7 @@ class CommentManager extends Manager
 {
 	public function getComments($chapterId)
 	{
-	    $query= $this ->pdo-> prepare('SELECT id, author,content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE chapterId=? ORDER BY id DESC');
+	    $query= $this ->pdo-> prepare('SELECT id, author,content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments WHERE chapterId=? ORDER BY id DESC');
 	    $query->execute(array($chapterId));
 
 	    return $query;
@@ -14,7 +14,7 @@ class CommentManager extends Manager
 
 	public function getCommentsAdmin()
 	{
-	    $query = $this ->pdo-> query('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
+	    $query = $this ->pdo-> query('SELECT id, author, content, signaled, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments ORDER BY signaled DESC');
 	    
 	    return $query;
 	}
@@ -28,7 +28,7 @@ class CommentManager extends Manager
 
 	public function getComment($chapterId)
 	{
-	    $req= $this->pdo-> prepare('SELECT id, author, content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE id=?');
+	    $req= $this->pdo-> prepare('SELECT id, author, content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments WHERE id=?');
 	    $req->execute(array($chapterId));
         $comment = $req->fetch();
 	    
