@@ -31,10 +31,6 @@ function editChapter()
         $logged = $userSession->isLogged();
         if ($logged===False)
         {
-        $req = new FlashMessageSession();
-        $message = $req->setFlash('Le chapitre a bien été ajouté');
-        $flash = $req->asMessage();
-
         $template = 'connexion';
         $title = 'Page de connexion';
         

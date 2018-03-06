@@ -74,9 +74,12 @@ function addComment()
 
     function removeComment()
     {
-        $commentManager = new CommentManager(); 
-        
+        $commentManager = new CommentManager();  
         $removeLine=$commentManager->cancelComment($_GET['id']);
+
+        $req = new FlashMessageSession();
+        $flash = $req->asMessage();
+        $flash = $req->setFlash('Le commentaire a bien été supprimé');
         header('Location: index.php?action=showAdmin');
         exit();
     }
@@ -86,8 +89,9 @@ function addComment()
         $commentManager = new CommentManager();
         $signaled = $commentManager->getSignaledComment($_GET['id']);
         $req = new FlashMessageSession();
-        $flash = $req->setFlash('Votre message a bien été signalé');
         $flash = $req->asMessage();
+        $flash = $req->setFlash('Votre message a bien été signalé');
+        
         header('Location: index.php?action=chapter&id=' . $_POST['id']);
         exit();  
     }
