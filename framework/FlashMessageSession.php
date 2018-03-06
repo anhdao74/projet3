@@ -7,22 +7,30 @@ class FlashMessageSession
 		if (!isset($_SESSION))
 		{
         	session_start();
-    	}
+    }
 		
 	}
 
     public function setFlash($message)
     {
+        
         $_SESSION['flash'] = $message;
         	
     }
 
+    public function showFlash()
+    {
+      echo $_SESSION['flash'];
+      
+      session_destroy();
+      $_SESSION['flash'] = false;
+    }
+
     public function asMessage()
 	{
-   		if (isset($_SESSION['flash']))
+   		if (isset($_SESSION['flash']) && $_SESSION['flash'] ==true)
    		{
-   			echo $_SESSION['flash'];
-   			unset ($_SESSION['flash']);
+   			return true;
    		}   
 	}
 }
