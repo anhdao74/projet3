@@ -9,6 +9,13 @@ public function showHome()
         $chapterManager = new ChapterManager(); 
 	    $chapters = $chapterManager->getChapters(); 
 
+        $connected= new UserSession();
+        $logged=$connected->isLogged();
+
+        $req = new FlashMessageSession();
+        $message = $req->setFlash('Le chapitre a bien été ajouté');
+        $flash = $req->asMessage();
+
         $template = 'home';
         $title = 'Page Accueil';
         
@@ -26,6 +33,13 @@ public function chapter()
         {
             $chapter = $chapterManager->getChapter($_GET['id']);
             $comments = $commentManager->getComments($_GET['id']);
+
+            $connected= new UserSession();
+            $logged=$connected->isLogged();
+
+            $req = new FlashMessageSession();
+            $message = $req->setFlash('Bonne lecture');
+            $flash = $req->asMessage();
         }
         $template = 'chapter';
         $title = 'Page chapitre';

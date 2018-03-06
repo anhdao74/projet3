@@ -6,7 +6,9 @@ class ConnexionController
 {
 function connexion()
     {
-        
+        $req= new FlashMessageSession();
+        $flash = $req->asMessage();
+
         $template = 'connexion';
         $title = 'Page de connexion';
         
@@ -50,7 +52,8 @@ function verifyController()
         $sign = $user->signIn();
         
         $req = new FlashMessageSession();
-        $flash = $req->setFlash('Vous êtes connecté');
+        $message = $req->setFlash('Vous êtes connecté');
+        $flash = $req->asMessage();
 
         $chapterManager = new ChapterManager();
         $chapters = $chapterManager->getChapters();

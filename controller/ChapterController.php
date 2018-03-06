@@ -31,6 +31,9 @@ function editChapter()
         $logged = $userSession->isLogged();
         if ($logged===False)
         {
+        $req = new FlashMessageSession();
+        $message = $req->setFlash('Le chapitre a bien été ajouté');
+        $flash = $req->asMessage();
 
         $template = 'connexion';
         $title = 'Page de connexion';
@@ -51,7 +54,8 @@ function editChapter()
                 $chapter= $chapterManager-> getChapter($chapterId);
                 $editChapter=$chapterManager->modifyChapter($chapterId, $newtitle, $newcontent);
                 $req = new FlashMessageSession();
-                $flash = $req->setFlash('Le chapitre a bien été modifié');
+                $message = $req->setFlash('Le chapitre a bien été modifié');
+                $flash = $req->asMessage();
                 header('Location: index.php?action=showAdmin');
                 exit();
             }  
@@ -59,6 +63,10 @@ function editChapter()
             {
                 $chapterManager = new ChapterManager();
                 $chapter = $chapterManager->getChapter($_GET['id']);
+
+                $req = new FlashMessageSession();
+                $message = $req->setFlash('Votre chapitre est prêt a être modifié');
+                $flash = $req->asMessage();
                 
                 $template = 'editChapter';
                 $title = 'Page modification chapitre';
@@ -76,7 +84,8 @@ function removeChapter()
         $removeLine=$chapterManager->cancelChapter($_GET['id']);
 
         $req = new FlashMessageSession();
-        $flash = $req->setFlash('Le chapitre a bien été supprimé');
+        $message = $req->setFlash('Le chapitre a bien été supprimé');
+        $flash = $req->asMessage();
         header('Location: index.php?action=showAdmin');
         exit();
     }

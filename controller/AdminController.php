@@ -10,6 +10,10 @@ class AdminController
 	    $chapters = $chapterManager->getChapters(); 
         $listcomments = $commentManager->getCommentsAdmin();
 
+        $req = new FlashMessageSession();
+        $message = $req->setFlash('Vous êtes connecté');
+        $flash = $req->asMessage();
+
 	    $template = 'admin';
         $title = 'Page administration';
         
