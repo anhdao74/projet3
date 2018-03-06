@@ -13,7 +13,6 @@ public function showHome()
         $logged=$connected->isLogged();
 
         $req = new FlashMessageSession();
-        $message = $req->setFlash('Le chapitre a bien été ajouté');
         $flash = $req->asMessage();
 
         $template = 'home';
@@ -38,7 +37,6 @@ public function chapter()
             $logged=$connected->isLogged();
 
             $req = new FlashMessageSession();
-            $message = $req->setFlash('Bonne lecture');
             $flash = $req->asMessage();
         }
         $template = 'chapter';

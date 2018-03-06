@@ -7,6 +7,7 @@ class ConnexionController
 function connexion()
     {
         $req= new FlashMessageSession();
+        $message = $req->setFlash('Entrez votre identifiant et votre mot de passe');
         $flash = $req->asMessage();
 
         $template = 'connexion';
@@ -21,7 +22,7 @@ function deconnexion()
         $sign = $user->logOut(); 
 
         $req = new FlashMessageSession();
-        $flash = $req->setFlash('Vous êtes déconnecté');
+        $message = $req->setFlash('Vous êtes déconnecté');
         header('location: index.php');
         exit();
     }
