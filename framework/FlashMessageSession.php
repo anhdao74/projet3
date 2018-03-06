@@ -31,6 +31,10 @@ class FlashMessageSession
    		if (isset($_SESSION['flash']) && $_SESSION['flash'] ==true)
    		{
    			return true;
-   		}   
+   		}
+      if (isset($_SESSION['flash']) && $_SESSION['flash'] ==false)
+      {
+        return false;
+      }     
 	}
 }
