@@ -1,94 +1,95 @@
-<?php $title='Blog Billet simple pour l\'Alaska'; ?>
 
 
-<div class="container">
-      <header class="page-header">
-        <h1>Billet simple pour l'Alaska</h1>
-      </header>
-      <section class="row">
-        <div class="col-sm-12">
 
-<div class="row">
+    <div class="container">
+          <header class="page-header">
+            <h1>Billet simple pour l'Alaska</h1>
+          </header>
+          <section class="row">
+            <div class="col-sm-12">
 
-    <section class="col-sm-8">
-        <h2>Le blog de Jean Forteroche</h2>
+    <div class="row">
 
-        <h4>Principe du Blog</h4>
-        <p> Jean Forteroche toujours à l'affût de nouvelles formes de communications et d'expression, a choisi de faire un cadeau a ses fans et de publier chaque semaine un chapitre de son nouveau roman "Billet simple pour l'Alaska": Il reste très à l'écoute de ses lecteurs et donne donc la possibilité de publier des commentaires sur chacun de ses chapitres.</p>
-    </section>
+        <section class="col-sm-8">
+            <h2>Le blog de Jean Forteroche</h2>
 
-    <section class="col-sm-7 table-responsive">
-          <table class="table table-bordered table-striped table-condensed">
-            <caption>
-            <h5>Derniers billets du blog :</h5>
-            </caption>
-        
-        <?php
+            <h4>Principe du Blog</h4>
+            <p> Jean Forteroche toujours à l'affût de nouvelles formes de communications et d'expression, a choisi de faire un cadeau a ses fans et de publier chaque semaine un chapitre de son nouveau roman "Billet simple pour l'Alaska": Il reste très à l'écoute de ses lecteurs et donne donc la possibilité de publier des commentaires sur chacun de ses chapitres.</p>
+        </section>
 
-        $req=$chapters-> fetchAll();
-
-        foreach ($req as $data)    
-        {
-        ?>
-        <div class="news"/>
-            <tr>
-            <td>
-            <?php echo $data['title']; ?>
-            le <?php echo $data['creation_date_fr']; ?>
-            </td>
-
-            <td>   
+        <section class="col-sm-7 table-responsive">
+              <table class="table table-bordered table-striped table-condensed">
+                <caption>
+                <h5>Derniers billets du blog :</h5>
+                </caption>
+            
             <?php
 
-            $res=$data['content'];
-            $res=substr($res, 0, 60);
-            echo $res;
+            $req=$chapters-> fetchAll();
+
+            foreach ($req as $data)    
+            {
             ?>
-            <br />
-            <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
-            </td>
-        </tr>
-        </div>
+            <div class="news"/>
+                <tr>
+                <td>
+                <?php echo $data['title']; ?>
+                le <?php echo $data['creation_date_fr']; ?>
+                </td>
+
+                <td>   
+                <?php
+
+                $res=$data['content'];
+                $res=substr($res, 0, 60);
+                echo $res;
+                ?>
+                <br />
+                <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
+                </td>
+            </tr>
+            </div>
+            <?php
+            }
+            $chapters->closeCursor();
+            ?>
+        </table>
+        </section>
+
+        <aside class="col-sm-offset-2 col-sm-2">
+            <img src="Forterocheportrait_mini.jpeg" alt="portrait photo">
+        
+            <h3>A propos de l'autheur</h3>
+            <p> Jean Forteroche né le 18 juillet 1965, est né à Annecy, il y vit toujours et trouve son inspiration par sa région.Romancier, il est également scénariste et a coécrit, avec Nicolas Tackian, les dialogues du film de Pierre Isoard intitulé Alex Hugo, la mort et la belle vie : film inspiré d'un roman américain, relocalisé en Provence pour l'adaptation à la télévision.
+            Grand passionné de thriller à l'instar de 8 millimètres de Joel Schumacher, on en retrouve quelques clins d'œil dans ses romans.
+            Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
+        </aside>
+    </div>
+    </div>
+
+    <section class="col-sm-12">  
+    <footer>
         <?php
-        }
-        $chapters->closeCursor();
+        
+        if ($logged==TRUE)
+        { ?>
+            <div class="col-sm-3">
+            <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
+            </div>
+            <div class="col-sm-offset-7 col-sm-2">
+            <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
+            </div>
+            
+        <?php }
+        
+        if ($logged==FALSE)
+        { ?>
+            <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
+            
+        <?php }
         ?>
-    </table>
+    </footer>
     </section>
-
-    <aside class="col-sm-offset-2 col-sm-2">
-        <img src="Forterocheportrait_mini.jpeg" alt="portrait photo">
-    
-        <h3>A propos de l'autheur</h3>
-        <p> Jean Forteroche né le 18 juillet 1965, est né à Annecy, il y vit toujours et trouve son inspiration par sa région.Romancier, il est également scénariste et a coécrit, avec Nicolas Tackian, les dialogues du film de Pierre Isoard intitulé Alex Hugo, la mort et la belle vie : film inspiré d'un roman américain, relocalisé en Provence pour l'adaptation à la télévision.
-        Grand passionné de thriller à l'instar de 8 millimètres de Joel Schumacher, on en retrouve quelques clins d'œil dans ses romans.
-        Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
-    </aside>
-</div>
-</div>
-
-<section class="col-sm-12">  
-<footer>
-    <?php
-    $connected= new UserSession();
-    $logged=$connected->isLogged();
-    if ($logged==TRUE)
-    { ?>
-        <div class="col-sm-3">
-        <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
-        </div>
-        <div class="col-sm-offset-7 col-sm-2">
-        <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
-        </div>
-        
-    <?php }
-    $connected= new UserSession();
-    $logged=$connected->isLogged();
-    if ($logged==FALSE)
-    { ?>
-        <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
-        
-    <?php }
-    ?>
-</footer>
 </section>
+</div>
+</body>
