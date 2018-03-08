@@ -12,9 +12,6 @@ public function showHome()
         $connected= new UserSession();
         $logged=$connected->isLogged();
 
-        $req = new FlashMessageSession();
-        $flash = $req->asMessage();
-
         $template = 'home';
         $title = 'Page Accueil';
         

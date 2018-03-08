@@ -20,9 +20,7 @@ function deconnexion()
     {
         $user = new UserSession();
         $sign = $user->logOut(); 
-
-        $req = new FlashMessageSession();
-        $message = $req->setFlash('Vous êtes déconnecté');
+        
         header('location: index.php');
         exit();
     }
