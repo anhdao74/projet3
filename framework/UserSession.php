@@ -28,14 +28,11 @@ class UserSession
 
 	public function isLogged()
 	{
-		if (isset($_SESSION['user']) && $_SESSION['user'] ==TRUE)
+		if (isset($_SESSION['user'])) 
         {
-       		return TRUE;
+       		return $_SESSION['user'];
         }  
-        if (isset($_SESSION['user']) && $_SESSION['user'] ==FALSE)
-        {
-       		return FALSE;
-        }      
+       		return FALSE;     
 	}
 	
 }

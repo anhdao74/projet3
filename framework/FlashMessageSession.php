@@ -20,21 +20,16 @@ class FlashMessageSession
 
     public function showFlash()
     {
-      echo $_SESSION['flash'];
-      
-      session_destroy();
+      return $_SESSION['flash'];
       $_SESSION['flash'] = false;
     }
 
     public function asMessage()
 	{
-   		if (isset($_SESSION['flash']) && $_SESSION['flash'] ==true)
-   		{
-   			return true;
-   		}
-      if (isset($_SESSION['flash']) && $_SESSION['flash'] ==false)
+ 		if (isset($_SESSION['flash'])) 
       {
+        return $_SESSION['flash'];
+      }  
         return false;
-      }     
 	}
 }
