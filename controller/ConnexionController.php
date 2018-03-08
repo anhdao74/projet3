@@ -6,6 +6,9 @@ class ConnexionController
 {
 function connexion()
     {
+        $connected= new UserSession();
+        $logged=$connected->isLogged();
+
         $req= new FlashMessageSession();
         $message = $req->setFlash('Entrez votre identifiant et votre mot de passe');
         $flash = $req->asMessage();
@@ -33,6 +36,9 @@ function verifyController()
         
         if (!$user)  
         {
+            $connected= new UserSession();
+            $logged=$connected->isLogged();
+
             $_SESSION['user'] = FALSE;
 
             $req = new FlashMessageSession();
@@ -49,6 +55,7 @@ function verifyController()
         {  
         $user = new UserSession();
         $sign = $user->signIn();
+        $logged=$user->isLogged();
         
         $req = new FlashMessageSession();
         $message = $req->setFlash('Vous êtes connecté');
