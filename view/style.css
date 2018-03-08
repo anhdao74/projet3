@@ -45,9 +45,10 @@ p
 body
 {
   background-color:#E2F1FC !important;  
+  margin-bottom: -20px;
 }
 
-section footer
+footer
 {
   background:#040447 !important;
   color: white !important;
