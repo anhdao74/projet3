@@ -1,12 +1,11 @@
+<body>
 
-
-
-    <div class="container">
-          <header class="page-header">
-            <h1>Billet simple pour l'Alaska</h1>
-          </header>
-          <section class="row">
-            <div class="col-sm-12">
+<div class="container">
+    <header class="page-header">
+        <h1>Billet simple pour l'Alaska</h1>
+    </header>
+    <section class="row">
+    <div class="col-sm-12">
 
     <div class="row">
 
@@ -18,42 +17,42 @@
         </section>
 
         <section class="col-sm-7 table-responsive">
-              <table class="table table-bordered table-striped table-condensed">
+            <table class="table table-bordered table-striped table-condensed">
                 <caption>
                 <h5>Derniers billets du blog :</h5>
                 </caption>
             
-            <?php
+        <?php
 
-            $req=$chapters-> fetchAll();
+        $req=$chapters-> fetchAll();
 
-            foreach ($req as $data)    
-            {
-            ?>
+        foreach ($req as $data)    
+        {
+        ?>
             <div class="news"/>
                 <tr>
-                <td>
-                <?php echo $data['title']; ?>
-                le <?php echo $data['creation_date_fr']; ?>
-                </td>
+                    <td>
+                    <?php echo $data['title']; ?>
+                    le <?php echo $data['creation_date_fr']; ?>
+                    </td>
 
-                <td>   
-                <?php
+                    <td>   
+                    <?php
 
-                $res=$data['content'];
-                $res=substr($res, 0, 60);
-                echo $res;
-                ?>
-                <br />
-                <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
-                </td>
-            </tr>
+                    $res=$data['content'];
+                    $res=substr($res, 0, 60);
+                    echo $res;
+                    ?>
+                    <br />
+                    <em><a href="index.php?action=chapter&amp;id=<?= $data['id'] ?>">Lire la suite...</a></em>
+                    </td>
+                </tr>
             </div>
-            <?php
-            }
-            $chapters->closeCursor();
-            ?>
-        </table>
+        <?php
+        }
+        $chapters->closeCursor();
+        ?>
+            </table>
         </section>
 
         <aside class="col-sm-offset-2 col-sm-2">
@@ -65,31 +64,9 @@
             Jean Forteroche est membre du collectif d'artistes La Ligue de l'Imaginaire.</p>
         </aside>
     </div>
+    
     </div>
-
-    <section class="col-sm-12">  
-    <footer>
-        <?php
-        
-        if ($logged==TRUE)
-        { ?>
-            <div class="col-sm-3">
-            <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
-            </div>
-            <div class="col-sm-offset-7 col-sm-2">
-            <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
-            </div>
-            
-        <?php }
-        
-        if ($logged==FALSE)
-        { ?>
-            <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
-            
-        <?php }
-        ?>
-    </footer>
     </section>
-</section>
 </div>
+
 </body>
