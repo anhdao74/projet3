@@ -1,4 +1,3 @@
-<?php var_dump($_SESSION);?>
 <!DOCTYPE html>
 <html>
 
@@ -24,6 +23,29 @@
 
         <?php include $template . 'View.phtml'; ?>
 
+        <section class="col-sm-12">  
+            <footer>
+                <?php
+                
+                if ($logged==TRUE)
+                { ?>
+                    <div class="col-sm-3">
+                    <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
+                    </div>
+                    <div class="col-sm-offset-7 col-sm-2">
+                    <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
+                    </div>
+                    
+                <?php }
+                
+                if ($logged==FALSE)
+                { ?>
+                    <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
+                    
+                <?php }
+                ?>
+            </footer>
+        </section>
     </body>
 
 </html>
