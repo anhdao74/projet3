@@ -5,14 +5,17 @@
         <meta charset="utf-8" />
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <script src="bootstrap/js/jquery.js"></script>
-        <link href="view/style.css" rel="stylesheet">
+        <link href="framework/style.css" rel="stylesheet">
         <script src="bootstrap/js/bootstrap.js" rel="stylesheet"></script>
         <script type="text/javascript" src="tinymce/tinymce.js"></script>
         <script type="text/javascript">
         tinyMCE.init({
         	selector : 'textarea',
             
-            language : "fr",});
+            language : "fr",
+            forced_root_nlock : false,
+            forced_br_newlines : true,
+            forced_p_newlines : false});
         </script>
         <script src="bootstrap/js/jquery.js"></script>
         <title><?= $title ?></title>
@@ -23,27 +26,27 @@
 
         <?php include $template . 'View.phtml'; ?>
 
-        <section class="col-sm-12">  
+        <section class="footer col-sm-12">  
             <footer>
-                <?php
+            <?php
+            
+            if ($logged==TRUE)
+            { ?>
+                <div class="col-sm-3">
+                <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
+                </div>
+                <div class="col-sm-offset-7 col-sm-2">
+                <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
+                </div>
                 
-                if ($logged==TRUE)
-                { ?>
-                    <div class="col-sm-3">
-                    <a class="admin" href="index.php?action=deconnexion"> Deconnexion </a>
-                    </div>
-                    <div class="col-sm-offset-7 col-sm-2">
-                    <a class="admin" href="index.php?action=showAdmin"> Page admin </a>
-                    </div>
-                    
-                <?php }
+            <?php }
+            
+            if ($logged==FALSE)
+            { ?>
+                <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
                 
-                if ($logged==FALSE)
-                { ?>
-                    <a class="admin" href="index.php?action=connexion"> Connexion admin du site </a>
-                    
-                <?php }
-                ?>
+            <?php }
+            ?>
             </footer>
         </section>
     </body>
