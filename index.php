@@ -3,7 +3,7 @@
 ini_set('display_errors','on');
 error_reporting(E_ALL);
 
-require_once('Autoload.php');
+require_once('framework/Autoload.php');
 
 $autoload = new Autoload;
 $autoload->register();
