@@ -12,11 +12,8 @@ function connexion()
         $req= new FlashMessageSession();
         $message = $req->setFlash('Entrez votre identifiant et votre mot de passe');
         $flash = $req->asMessage();
-
-        $template = 'connexion';
-        $title = 'Page de connexion';
         
-        require('view/layoutView.phtml');
+        require('view/connexionView.phtml');
     }
 
 function deconnexion()
