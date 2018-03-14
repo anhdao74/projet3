@@ -32,7 +32,7 @@ function comment()
         $commentManager = new CommentManager(); 
         if (isset($_GET['id']) > 0)
         {
-            $comment = $commentManager->getComment($_GET['id']);
+            $comment = $commentManager->getComment(strip_tags($_GET['id']));
         }
         else 
         {
@@ -53,7 +53,7 @@ function addComment()
                 {
                 if (!empty($_POST['author']) && !empty($_POST['content']))
                 {
-                    $affectedLines = $commentManager->postComment($_POST['id'], $_POST['author'], $_POST['content']);
+                    $affectedLines = $commentManager->postComment(strip_tags($_POST['id']),strip_tags($_POST['author']), strip_tags($_POST['content']));
                     $req = new FlashMessageSession();
                     $message = $req->setFlash('Votre commentaire a bien été ajouté');
                     $flash = $req->asMessage();
@@ -67,7 +67,7 @@ function addComment()
         {
             throw new Exception('Aucun identifiant de billet envoyé');
         }
-    header('Location: index.php?action=chapter&id=' . $_POST['id']);
+    header('Location: index.php?action=chapter&id=' . strip_tags($_POST['id']));
     exit();
     }
 
@@ -75,7 +75,7 @@ function addComment()
     function removeComment()
     {
         $commentManager = new CommentManager();  
-        $removeLine=$commentManager->cancelComment($_GET['id']);
+        $removeLine=$commentManager->cancelComment(strip_tags($_GET['id']));
 
         $req = new FlashMessageSession();
         $flash = $req->asMessage();
@@ -87,12 +87,12 @@ function addComment()
     function signaledComment()
     {
         $commentManager = new CommentManager();
-        $signaled = $commentManager->getSignaledComment($_GET['id']);
+        $signaled = $commentManager->getSignaledComment(strip_tags($_GET['id']));
         $req = new FlashMessageSession();
         $flash = $req->asMessage();
         $flash = $req->setFlash('Votre message a bien été signalé');
         
-        header('Location: index.php?action=chapter&id=' . $_POST['id']);
+        header('Location: index.php?action=chapter&id=' . strip_tags($_POST['id']));
         exit();  
     }
 }

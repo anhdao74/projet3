@@ -28,7 +28,7 @@ function deconnexion()
 function verifyController()
     {
         $userManager = new ConnexionManager();
-        $user = $userManager->verifModel($_POST['login'], $_POST['pass']);
+        $user = $userManager->verifModel(strip_tags($_POST['login']), strip_tags($_POST['pass']));
         
         
         if (!$user)  

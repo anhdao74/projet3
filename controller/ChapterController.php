@@ -16,7 +16,7 @@ function addChapter()
         else 
             {
                 
-                $affectedLines= $chapterManager->postChapter($_POST['title'], $_POST['content']);
+                $affectedLines= $chapterManager->postChapter(strip_tags($_POST['title']), strip_tags($_POST['content']));
 
                 $req = new FlashMessageSession();
                 $flash = $req->setFlash('Le chapitre a bien été ajouté');
@@ -43,9 +43,9 @@ function editChapter()
 
             
             {
-                $newtitle = $_POST['newtitle'];
-                $newcontent = $_POST['newcontent'];
-                $chapterId = $_POST['id'];
+                $newtitle = strip_tags($_POST['newtitle']);
+                $newcontent = strip_tags($_POST['newcontent']);
+                $chapterId = strip_tags($_POST['id']);
                 $chapterManager = new ChapterManager();
                 $chapter= $chapterManager-> getChapter($chapterId);
                 $editChapter=$chapterManager->modifyChapter($chapterId, $newtitle, $newcontent);
@@ -58,7 +58,7 @@ function editChapter()
             else
             {
                 $chapterManager = new ChapterManager();
-                $chapter = $chapterManager->getChapter($_GET['id']);
+                $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
 
                 $req = new FlashMessageSession();
                 $message = $req->setFlash('Votre chapitre est prêt a être modifié');
@@ -77,7 +77,7 @@ function removeChapter()
     {
         $chapterManager = new ChapterManager();
         $chapters=$chapterManager->getChapters();
-        $removeLine=$chapterManager->cancelChapter($_GET['id']);
+        $removeLine=$chapterManager->cancelChapter(strip_tags($_GET['id']));
 
         $req = new FlashMessageSession();
         $message = $req->setFlash('Le chapitre a bien été supprimé');

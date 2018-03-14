@@ -27,8 +27,8 @@ public function chapter()
         $commentManager = new CommentManager();
         if (isset($_GET['id']) && $_GET['id'] > 0)
         {
-            $chapter = $chapterManager->getChapter($_GET['id']);
-            $comments = $commentManager->getComments($_GET['id']);
+            $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
+            $comments = $commentManager->getComments(strip_tags($_GET['id']));
 
             $connected= new UserSession();
             $logged=$connected->isLogged();
