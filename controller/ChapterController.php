@@ -12,7 +12,13 @@ function addChapter()
 		if (empty($_POST['title']) && empty($_POST['content'])) 
             {
                 $verif = new VerifyId();
-                $chapter = $verif-> getAddChapterId();   
+                $chapter = $verif-> getAddChapterId(); 
+
+                $req = new FlashMessageSession();
+                $flash = $req->asMessage();
+                $flash = $req->setFlash('Vous n\'avez pas rempli tous les champs');
+                header('Location: index.php?action=showAdmin');
+                exit();  
             }            
         else 
             {

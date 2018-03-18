@@ -42,7 +42,11 @@ function addComment()
                 }
                 else 
                 {
-                    throw new Exception('Tous les champs ne sont pas remplis !');
+                    $req = new FlashMessageSession();
+                    $flash = $req->asMessage();
+                    $flash = $req->setFlash('Vous n\'avez pas rempli tous les champs');
+                    header('Location: index.php?action=chapter&id=' . strip_tags($_POST['id']));
+                    exit();
                 }
                 }
         else 
