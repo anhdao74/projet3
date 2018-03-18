@@ -47,7 +47,8 @@ function addComment()
                 }
         else 
         {
-            throw new Exception('Aucun identifiant de billet envoyé');
+            $verif = new VerifyId();
+            $comment = $verif-> getAddCommentId(); 
         }
         header('Location: index.php?action=chapter&id=' . strip_tags($_POST['id']));
         exit();

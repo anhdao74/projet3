@@ -11,11 +11,11 @@ function addChapter()
         $chapters= $chapterManager->getChapters();
 		if (empty($_POST['title']) && empty($_POST['content'])) 
             {
-            	throw new Exception ('Vous n\'avez pas rempli tous les champs, vérifiez');    
+                $verif = new VerifyId();
+                $chapter = $verif-> getAddChapterId();   
             }            
         else 
             {
-                
                 $affectedLines= $chapterManager->postChapter(strip_tags($_POST['title']), strip_tags($_POST['content']));
 
                 $req = new FlashMessageSession();
@@ -31,10 +31,10 @@ function editChapter()
         $logged = $userSession->isLogged();
         if ($logged===False)
         {
-        $template = 'connexion';
-        $title = 'Page de connexion';
-        
-        require('view/layoutView.phtml'); 
+            $template = 'connexion';
+            $title = 'Page de connexion';
+            
+            require('view/layoutView.phtml'); 
         }
 
         else
@@ -57,30 +57,20 @@ function editChapter()
             }  
             else
             {
+                $verif = new VerifyId();
+                $chapter = $verif-> getChapterId();
+
                 $chapterManager = new ChapterManager();
                 $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
-                if ($chapter)
-                {
-                    if (isset($_GET['id']))
-                    {
-                        $_GET['id'] = (int) $_GET['id'];
-                        if ($_GET['id'] >= 1 AND $_GET['id'] <=500)
-                        {
-                            $req = new FlashMessageSession();
-                            $message = $req->setFlash('Votre chapitre est prêt a être modifié');
-                            $flash = $req->asMessage();
-                            
-                            $template = 'editChapter';
-                            $title = 'Page modification chapitre';
-                    
-                            require('view/layoutView.phtml'); 
-                        }
-                    }
-                }
-                else 
-                {
-                    echo'L\'identifiant du chapitre demandé n\'existe pas';
-                }   
+                
+                $req = new FlashMessageSession();
+                $message = $req->setFlash('Votre chapitre est prêt a être modifié');
+                $flash = $req->asMessage();
+                
+                $template = 'editChapter';
+                $title = 'Page modification chapitre';
+        
+                require('view/layoutView.phtml'); 
             }
         } 
 
@@ -88,27 +78,17 @@ function editChapter()
 
 function removeChapter()
     {
+        $verif = new VerifyId();
+        $chapter = $verif-> getChapterId();
+
         $chapterManager = new ChapterManager();
         $chapters=$chapterManager->getChapters();
         $removeLine=$chapterManager->cancelChapter(strip_tags($_GET['id']));
-        if ($chapters)
-        {
-            if (isset($_GET['id']))
-            {
-               $_GET['id'] = (int) $_GET['id'];
-               if ($_GET['id'] >= 1 AND $_GET['id'] <=500)
-               {
-                    $req = new FlashMessageSession();
-                    $message = $req->setFlash('Le chapitre a bien été supprimé');
-                    $flash = $req->asMessage();
-                    header('Location: index.php?action=showAdmin');
-                    exit();
-                }  
-            }
-        }
-        else 
-        {
-            echo'L\'identifiant du chapitre demandé n\'existe pas';
-        }
+
+        $req = new FlashMessageSession();
+        $message = $req->setFlash('Le chapitre a bien été supprimé');
+        $flash = $req->asMessage();
+        header('Location: index.php?action=showAdmin');
+        exit();
     }
 }
