@@ -26,10 +26,10 @@ class CommentManager extends Manager
 	    return $signaled;
 	}
 
-	public function getComment($chapterId)
+	public function getComment($commentId)
 	{
-	    $req= $this->pdo-> prepare('SELECT id, author, content, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments WHERE id=?');
-	    $req->execute(array($chapterId));
+	    $req= $this->pdo-> prepare('SELECT id, author, content, chapterId, DATE_FORMAT(add_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM comments WHERE id=?');
+	    $req->execute(array($commentId));
         $comment = $req->fetch();
 	    
 	    return $comment;

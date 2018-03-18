@@ -26,13 +26,6 @@ class Routeur
                 return [$controller, 'chapter'];
             }
 
-            elseif ($_GET['action'] == 'comment') 
-            {
-                $ommentController = new CommentController;
-                
-                return [$commentController, 'comment'];
-            }
-
             elseif ($_GET['action'] == 'listCommentsAdmin') 
             {
                 $ommentController = new CommentController;
@@ -95,7 +88,6 @@ class Routeur
             elseif ($_GET['action'] == 'removeChapter') 
             {
                 $chapterManager = new ChapterManager;
-                $chapter=$chapterManager->getChapter($_GET['id']);
 
                 $chapterController = new ChapterController;
                 return [$chapterController, 'removeChapter'];
@@ -103,8 +95,7 @@ class Routeur
 
             elseif ($_GET['action'] == 'removeComment') 
             {
-                $commentManager = new CommentManager;
-                
+                $commentManager = new CommentManager;                
 
                 $commentController = new CommentController;
                 return [$commentController, 'removeComment'];
@@ -113,7 +104,6 @@ class Routeur
             elseif ($_GET['action'] == 'signaledComment') 
             {
                 $commentManager = new CommentManager;
-                $comment=$commentManager->getComment($_GET['id']);
 
                 $commentController = new CommentController;
                 return [$commentController, 'signaledComment'];

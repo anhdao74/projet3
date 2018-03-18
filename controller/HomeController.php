@@ -12,6 +12,9 @@ public function showHome()
         $connected= new UserSession();
         $logged=$connected->isLogged();
 
+        $req = new FlashMessageSession();
+        $flash = $req->asMessage();
+
         $template = 'home';
         $title = 'Page Accueil';
         
@@ -25,20 +28,33 @@ public function chapter()
         
         $chapterManager = new ChapterManager();
         $commentManager = new CommentManager();
-        if (isset($_GET['id']) && $_GET['id'] > 0)
-        {
-            $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
-            $comments = $commentManager->getComments(strip_tags($_GET['id']));
-
-            $connected= new UserSession();
-            $logged=$connected->isLogged();
-
-            $req = new FlashMessageSession();
-            $flash = $req->asMessage();
-        }
-        $template = 'chapter';
-        $title = 'Page chapitre';
         
-        require('view/layoutView.phtml');
+        $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
+        if ($chapter)
+        {
+            if (isset($_GET['id']))
+            { 
+               $_GET['id'] = (int) $_GET['id'];
+               if ($_GET['id'] >= 1 AND $_GET['id'] <=500)
+               {
+                $comments = $commentManager->getComments(strip_tags($_GET['id']));
+
+                $connected= new UserSession();
+                $logged=$connected->isLogged();
+
+                $req = new FlashMessageSession();
+                $flash = $req->asMessage();
+
+                $template = 'chapter';
+                $title = 'Page chapitre';
+                
+                require('view/layoutView.phtml');
+                }
+            }
+        }
+        else
+        {
+            echo 'L\'identifiant du chapitre demandé n\'existe pas';
+        }
     }
 }

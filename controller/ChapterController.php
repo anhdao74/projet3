@@ -59,15 +59,28 @@ function editChapter()
             {
                 $chapterManager = new ChapterManager();
                 $chapter = $chapterManager->getChapter(strip_tags($_GET['id']));
-
-                $req = new FlashMessageSession();
-                $message = $req->setFlash('Votre chapitre est prêt a être modifié');
-                $flash = $req->asMessage();
-                
-                $template = 'editChapter';
-                $title = 'Page modification chapitre';
-        
-                require('view/layoutView.phtml');    
+                if ($chapter)
+                {
+                    if (isset($_GET['id']))
+                    {
+                        $_GET['id'] = (int) $_GET['id'];
+                        if ($_GET['id'] >= 1 AND $_GET['id'] <=500)
+                        {
+                            $req = new FlashMessageSession();
+                            $message = $req->setFlash('Votre chapitre est prêt a être modifié');
+                            $flash = $req->asMessage();
+                            
+                            $template = 'editChapter';
+                            $title = 'Page modification chapitre';
+                    
+                            require('view/layoutView.phtml'); 
+                        }
+                    }
+                }
+                else 
+                {
+                    echo'L\'identifiant du chapitre demandé n\'existe pas';
+                }   
             }
         } 
 
@@ -78,11 +91,24 @@ function removeChapter()
         $chapterManager = new ChapterManager();
         $chapters=$chapterManager->getChapters();
         $removeLine=$chapterManager->cancelChapter(strip_tags($_GET['id']));
-
-        $req = new FlashMessageSession();
-        $message = $req->setFlash('Le chapitre a bien été supprimé');
-        $flash = $req->asMessage();
-        header('Location: index.php?action=showAdmin');
-        exit();
+        if ($chapters)
+        {
+            if (isset($_GET['id']))
+            {
+               $_GET['id'] = (int) $_GET['id'];
+               if ($_GET['id'] >= 1 AND $_GET['id'] <=500)
+               {
+                    $req = new FlashMessageSession();
+                    $message = $req->setFlash('Le chapitre a bien été supprimé');
+                    $flash = $req->asMessage();
+                    header('Location: index.php?action=showAdmin');
+                    exit();
+                }  
+            }
+        }
+        else 
+        {
+            echo'L\'identifiant du chapitre demandé n\'existe pas';
+        }
     }
 }
